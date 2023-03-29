@@ -11,18 +11,25 @@ import org.springframework.web.bind.annotation.*;
 
 @Log4j2
 @RestController
-@RequestMapping("/nicepay")
+@RequestMapping("/api")
 public class NicepayApi {
     @Autowired
     NicepayService service;
 
-    @GetMapping("/payFormInit")
-    public ResponseEntity<Object> payFormInit(@ModelAttribute NicepayFormInDto inDto){
+    @GetMapping("payFormInit")
+    public ResponseEntity<Object> payFormInit(){
         HttpStatus returnStatus = HttpStatus.OK;
-        NicepayFormOutDto outDto = service.payFormInit(inDto);
+        NicepayFormOutDto outDto = service.payFormInit();
         return ResponseEntity.status(returnStatus).body(outDto);
     }
 
+
+//    @GetMapping("/payFormInit")
+//    public ResponseEntity<Object> payFormInit(@ModelAttribute NicepayFormInDto inDto){
+//        HttpStatus returnStatus = HttpStatus.OK;
+//        NicepayFormOutDto outDto = service.payFormInit(inDto);
+//        return ResponseEntity.status(returnStatus).body(outDto);
+//    }
 
 //    @PostMapping("/callback")
 //    public ResponseEntity<Object> createMember(@RequestBody SampleInDto inDto){

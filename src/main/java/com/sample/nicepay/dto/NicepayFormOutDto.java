@@ -14,5 +14,6 @@ public class NicepayFormOutDto {
     private String returnURL;
     private String ediDate;
     private String signData;
+    private String mid;
 
 }
