@@ -1,6 +1,7 @@
 package com.sample.nicepay.api;
 
-import com.sample.nicepay.dto.NicepayFormInDto;
+import com.sample.nicepay.dto.NicepayCallbackInDto;
+import com.sample.nicepay.dto.NicepayCallbackOutDto;
 import com.sample.nicepay.dto.NicepayFormOutDto;
 import com.sample.nicepay.service.NicepayService;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +21,15 @@ public class NicepayApi {
     public ResponseEntity<Object> payFormInit(){
         HttpStatus returnStatus = HttpStatus.OK;
         NicepayFormOutDto outDto = service.payFormInit();
+        return ResponseEntity.status(returnStatus).body(outDto);
+    }
+
+    @PostMapping("/callback")
+    public ResponseEntity<Object> callback(@RequestBody NicepayCallbackInDto inDto) throws Exception {
+        log.info("callback | NicepayCallbackInDto : " + inDto);
+        HttpStatus returnStatus = HttpStatus.OK;
+        NicepayCallbackOutDto outDto = service.callback(inDto);
+        log.info("callback | NicepayCallbackOutDto : " + outDto);
         return ResponseEntity.status(returnStatus).body(outDto);
     }
 
